@@ -5,11 +5,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Poppins:wght@400;700&display=swap" rel="stylesheet"> 
     <title>RPS</title>
 </head>
 <body>
-    <h1>Rock Paper Scissors</h1>
+    <header class=" header">
+        <h1 class="header-title  container">Rock Paper Scissors</h1>
+    </header>
     
+    <main class="main container">
+        <div class="score">
+            <div class="player">
+                <p class="score-title">Player: 0</p>
+                <img class="player-img" src="./img/paper.jpg" alt="Player Choice">
+            </div>
+            <div class="computer">
+                <p class="score-title">Computer: 0</p>
+                <img class="computer-img" src="./img/scissors.jpg" alt="Computer Choice">
+            </div>
+        </div>
+
+        <h2 class="rule">First to 5 wins!</h2>
+
+        <div class="choices">
+            <div class="choices-rock">
+                <img class="choice-rock" src="./img/rock.jpg" alt="Rock">
+                <p>Rock</p>
+            </div>
+            <div class="choices-paper">
+                <img class="choice-paper" src="./img/paper.jpg" alt="Paper">
+                <p>Paper</p>
+            </div>
+            <div class="choices-scissors">
+                <img class="choice-scissors" src="./img/scissors.jpg" alt="Scissors">
+                <p>Scissors</p>
+            </div>
+        </div>
+
+        <h2 class="result">YOU WINN!!!</h2>
+
+        <div class="button">
+            <a class="btn" href="#">Restart</a>
+        </div>
+        
+
+    </main>
+
+
     <script src="./app.js"></script>
 
 </body>

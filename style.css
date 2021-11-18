@@ -3,3 +3,101 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body {
+    background-color: #FBEBE3;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    max-width: 85%;
+    margin: 0 auto;
+}
+
+/* Header */
+
+.header {
+    border-bottom: 5px solid #DE926D;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.header-title {
+    font-family: 'Courgette', cursive;
+    font-size: 2.2rem;
+    padding: 0.3em 0;
+}
+
+/* Main */
+
+.score {
+    display: flex;
+    gap: 2em;
+    margin-bottom: 1em;
+}
+
+.score-title {
+    font-size: 1.3rem;
+    text-align: center;
+    margin-bottom: 0.8em;
+}
+
+.player-img,
+.computer-img {
+    max-width: 100%;
+    border-radius: 50%;
+}
+
+.rule {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 400;
+}
+
+.rule::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 5px;
+    background-color: #DE926D;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.choices {
+    display: flex;
+    gap: 1em;
+    margin: 1em 0;
+}
+
+.choices-item {
+    text-align: center;
+}
+
+.choice-rock,
+.choice-paper,
+.choice-scissors {
+    max-width: 100%;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.result {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 0.7em;
+}
+
+.button {
+    text-align: center;
+}
+
+.btn {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: #fff;
+    background-color: #DE926D;
+    padding: 0.6em 1.5em;
+    border-radius: 10px;
+}

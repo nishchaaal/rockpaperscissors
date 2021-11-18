@@ -1,6 +1,7 @@
 
 const computerPlay = () => {
     let computerChoices = ['rock','paper','scissors'];
+    console.log(computerChoices);
     return computerChoices[Math.floor(Math.random() * 3)];
 }
 
@@ -45,9 +46,9 @@ const game = () => {
         console.log(`Round ${round}`);
         let roundResult = playRound();
      if (roundResult === 'win') {
-         player += 1;
+         player++;
      } else if (roundResult === 'lose') {
-         comp += 1;
+         comp++;
      }
      round +=1;
     }
@@ -60,4 +61,3 @@ const game = () => {
     }
 }
 
-game();
