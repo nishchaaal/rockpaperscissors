@@ -1,63 +1,112 @@
 
+// variables
+const playerTitle = document.querySelector('.player-title');
+const computerTitle = document.querySelector('.computer-title');
+const playerImg = document.querySelector('.player-img');
+const computerImg = document.querySelector('.computer-img');
+const choiceRock = document.querySelector('.choice-rock');
+const choicePaper = document.querySelector('choice-paper');
+const choiceScissors = document.querySelector('choice-scissors');
+const playerOptions = document.querySelectorAll('.player-options');
+const result = document.querySelector('.result');
+const restartButton = document.querySelector('.btn');
+let playerEntry = 0;
+
+// Funtions
+
 const computerPlay = () => {
     let computerChoices = ['rock','paper','scissors'];
-    console.log(computerChoices);
-    return computerChoices[Math.floor(Math.random() * 3)];
+    let comp = computerChoices[Math.floor(Math.random() * 3)];
+    computerImg.src = `./img/${comp}.jpg`;
+    return comp;
 }
 
-const resultCheck = (player1Choice,player2Choice) => {
+const playRound = (player1Choice,player2Choice) => {
     if (player1Choice === player2Choice) {
-        console.log('Draw!')
+        result.textContent = 'ROUND DRAW!!!';
+        result.style.color = '#484848';
         return 'draw';
     } else if (player1Choice === 'rock' && player2Choice  === 'scissors') {
-        console.log('You Win! Rock beats Scissors');
+        result.textContent = 'ROUND WIN!!!';
+        result.style.color = '#2F9B33';
         return 'win';
     } else if (player1Choice === 'rock' && player2Choice  === 'paper') {
-        console.log('You Lose! Paper beats Rock');
+        result.textContent = 'ROUND LOST!!!';
+        result.style.color = '#FF0000';
         return 'lose';
     } else if (player1Choice === 'scissors' && player2Choice === 'rock') {
-        console.log('You Lose! Rock beats Scissors');
+        result.textContent = 'ROUND LOST!!!';
+        result.style.color = '#FF0000';
         return 'lose';
     } else if (player1Choice === 'scissors' && player2Choice === 'paper') {
-        console.log('You Win! Scissors beats Paper');
+        result.textContent = 'ROUND WIN!!!';
+        result.style.color = '#2F9B33';
         return 'win';
     } else if (player1Choice === 'paper' && player2Choice === 'rock') {
-        console.log('You Win! Paper beats Rock');
+        result.textContent = 'ROUND WIN!!!';
+        result.style.color = '#2F9B33';
         return 'win';
     } else if (player1Choice === 'paper' && player2Choice === 'scissors') {
-        console.log('You Lose! Scissors beats Paper');
+        result.textContent = 'ROUND LOST!!!';
+        result.style.color = '#FF0000';
         return 'lose';
     }       
 }
 
-const playRound = (playerSelection ,computerSelection) => {
-    computerSelection = computerPlay();
-    let playerEntry = prompt('rock / paper / scissors ?');
-    playerSelection =  playerEntry.toLowerCase();
-    return resultCheck(playerSelection,computerSelection);
-}
-
-let round = 1
-let player = 0;
-let comp = 0;
+let playerScore = 0;
+let computerScore = 0;
 
 const game = () => {
-    for (let i = 0; i < 5; i++) {
-        console.log(`Round ${round}`);
-        let roundResult = playRound();
-     if (roundResult === 'win') {
-         player++;
-     } else if (roundResult === 'lose') {
-         comp++;
-     }
-     round +=1;
+    
+    let roundResult = playRound(playerEntry, computerPlay());
+    if (roundResult === 'win') {
+        playerScore++;
+        playerTitle.textContent = `Player: ${playerScore}`;
+    } else if (roundResult === 'lose') {
+        computerScore++;
+        computerTitle.textContent = `Computer: ${computerScore}`;
     }
-    if (player === comp) {
-        console.log(`${player} : ${comp} - DRAWW`);
-    } else if (player > comp) {
-        console.log(`${player} : ${comp} - YOU WINNN`);
-    } else if (comp > player) {
-        console.log(`${player} : ${comp} - YOU LOOSEEE`);
+
+    if (playerScore === 5) {
+        result.textContent = 'MATCH WIN!!!';
+        result.style.color = '#2F9B33';
+        playerOptions.forEach((option) => {
+            option.removeEventListener('click', events);
+        });
+    } else if (computerScore === 5) {
+        result.textContent = 'MATCH LOST!!!';
+        result.style.color = '#FF0000';
+        playerOptions.forEach((option) => {
+            option.removeEventListener('click', events);
+        });
     }
 }
 
+
+// this function resets everything
+const restart = () => {
+    playerTitle.textContent = 'Player: 0';
+    computerTitle.textContent = 'Computer: 0';
+    playerImg.src = './img/placeholder.jpg';
+    computerImg.src = './img/placeholder.jpg';
+    result.textContent = '';
+    playerOptions.forEach((option) => {
+        option.addEventListener('click', events);
+    });
+    playerScore = 0;
+    computerScore = 0;
+}
+
+const events = (e) => {
+    playerEntry = e.target.alt;
+    playerImg.src = `./img/${playerEntry}.jpg`;
+    game();
+}
+
+// Event Listeners
+
+playerOptions.forEach((option) => {
+    option.addEventListener('click', events);
+});
+
+restartButton.addEventListener('click', restart)
